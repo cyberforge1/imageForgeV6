@@ -17,3 +17,12 @@ def image(request):
         'image': image,
     }
     return render(request, 'imageGeneration/image.html', context)
+
+
+def gallery(request):
+    '''Show the gallery'''
+    gallery = Image.objects.all()
+    context = {
+        'gallery': gallery,
+    }
+    return render(request, 'imageGeneration/gallery.html', context)
