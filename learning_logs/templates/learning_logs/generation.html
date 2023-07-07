@@ -3,15 +3,73 @@
 {% endblock page_header %} {% block content %}
 
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Button Example</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
+    />
+    <style>
+      .button-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 50vh; /* Adjust the height to make buttons 15% higher */
+      }
+      .button-container .btn-generate-image {
+        background-color: #28a745;
+      }
+    </style>
   </head>
   <body>
-    <p>This is taking the place of the image generation command</p>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <!-- Your existing navbar code here -->
+    </nav>
+
+    <div class="button-container">
+      <button class="btn btn-primary btn-lg button" onclick="generatePrompt()">
+        Generate Prompt
+      </button>
+      <button
+        class="btn btn-primary btn-lg button btn-generate-image"
+        onclick="generateImage()"
+      >
+        Generate Image
+      </button>
+    </div>
+
+    <script>
+      function generatePrompt() {
+        $.ajax({
+          url: "http://127.0.0.1:8000/execute_prompt_file/", // Replace with the actual URL to your Python file
+          type: "GET",
+          success: function (response) {
+            // Handle the response from the server
+            alert("Python file executed successfully!");
+          },
+          error: function (xhr, status, error) {
+            // Handle any errors that occur during the AJAX request
+            alert("An error occurred: " + error);
+          },
+        });
+      }
+
+      function generateImage() {
+        $.ajax({
+          url: "http://127.0.0.1:8000/execute_image_file/", // Replace with the actual URL to your Python file
+          type: "GET",
+          success: function (response) {
+            // Handle the response from the server
+            alert("Python file executed successfully!");
+          },
+          error: function (xhr, status, error) {
+            // Handle any errors that occur during the AJAX request
+            alert("An error occurred: " + error);
+          },
+        });
+      }
+    </script>
   </body>
 </html>
-
 {% endblock content %}
