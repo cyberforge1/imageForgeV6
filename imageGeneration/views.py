@@ -12,7 +12,8 @@ def prompt(request):
 
 def image(request):
     '''Show all images'''
-    image = Image.objects.all()
+    image = Image.objects.all().order_by('datetime_field')
+    image = list(reversed(image))
     context = {
         'image': image,
     }
@@ -21,7 +22,8 @@ def image(request):
 
 def gallery(request):
     '''Show the gallery'''
-    gallery = Image.objects.all()
+    gallery = Image.objects.all().order_by('datetime_field')
+    gallery = list(reversed(gallery))
     context = {
         'gallery': gallery,
     }
