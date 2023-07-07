@@ -1,0 +1,23 @@
+{% extends 'learning_logs/base.html' %} {% block page_header %}
+<h1>Gallery</h1>
+{% endblock page_header %} {% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body>
+    <h1>Images</h1>
+    {% for image in image %}
+    <div>
+      <p>Added on: {{ image.get_datetime }}</p>
+      <p>{{ image.get_text }}</p>
+      <img src="{{ image.get_image_url }}" alt="Image" />
+    </div>
+    {% endfor %}
+  </body>
+</html>
+
+{% endblock content %}
